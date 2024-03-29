@@ -183,5 +183,5 @@ class TestAccountService(TestCase):
         accounts = self._create_accounts(10)
         response = self.client.get(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        data = resp.get_json()
+        data = response.get_json()
         self.assertEqual(len(data), 10)
