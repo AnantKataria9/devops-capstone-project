@@ -134,3 +134,12 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
         self.assertEqual(data["name"], account.name)
+
+    def test_get_account_not_found(self):
+        """It should not read an account with non existing ID"""
+        account_id = 1232132
+        response = self.client.get(
+            f"{BASE_URL}/{account_id}",
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
